@@ -1,6 +1,27 @@
 "use client"
 
 import { useState, useMemo } from "react"
+import {
+  LayoutDashboard,
+  FolderOpen,
+  FileText,
+  Users,
+  CreditCard,
+  Building2,
+  Settings,
+  Plus,
+  Search,
+  Bell,
+  HelpCircle,
+  Home,
+  Download,
+  Share2,
+  MoreHorizontal,
+  Edit,
+  Trash2,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react"
 
 const recentReportsData = [
   {
@@ -8,7 +29,7 @@ const recentReportsData = [
     name: "Q1 Emissions Summary",
     client: "Vanenburg solutions",
     type: "Emissions Summary",
-    generatedBy: { name: "Alex Morgan", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Alex Morgan", avatar: "/placeholder.svg?height=32&width=32", gender: "male" },
     date: "Apr 28, 2025",
     dateObj: new Date("2025-04-28"),
     status: "Complete",
@@ -18,7 +39,7 @@ const recentReportsData = [
     name: "Q1 Emissions Summary",
     client: "Houchwald GmbH",
     type: "Emissions Summary",
-    generatedBy: { name: "Jackson M", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Jackson M", avatar: "/placeholder.svg?height=32&width=32", gender: "male" },
     date: "Apr 28, 2025",
     dateObj: new Date("2025-04-28"),
     status: "Complete",
@@ -28,7 +49,7 @@ const recentReportsData = [
     name: "Q2 Emissions Summary",
     client: "Houchwald GmbH",
     type: "Emissions Summary",
-    generatedBy: { name: "Jordan Lee", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Jordan Lee", avatar: "/placeholder.svg?height=32&width=32", gender: "female" },
     date: "Jul 15, 2025",
     dateObj: new Date("2025-07-15"),
     status: "In Progress",
@@ -38,7 +59,7 @@ const recentReportsData = [
     name: "Q3 Emissions Summary",
     client: "Clearthinking Ltd",
     type: "Emissions Summary",
-    generatedBy: { name: "Samantha Wang", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Samantha Wang", avatar: "/placeholder.svg?height=32&width=32", gender: "female" },
     date: "Oct 10, 2025",
     dateObj: new Date("2025-10-10"),
     status: "Pending",
@@ -48,7 +69,7 @@ const recentReportsData = [
     name: "Q4 Emissions Summary",
     client: "Vanenburg solutions",
     type: "Emissions Summary",
-    generatedBy: { name: "Chris Johnson", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Chris Johnson", avatar: "/placeholder.svg?height=32&width=32", gender: "male" },
     date: "Jan 5, 2026",
     dateObj: new Date("2026-01-05"),
     status: "Not Started",
@@ -58,7 +79,7 @@ const recentReportsData = [
     name: "Annual Carbon Report",
     client: "GreenTech Industries",
     type: "Annual Report",
-    generatedBy: { name: "Sarah Chen", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Sarah Chen", avatar: "/placeholder.svg?height=32&width=32", gender: "female" },
     date: "Mar 15, 2025",
     dateObj: new Date("2025-03-15"),
     status: "Complete",
@@ -68,7 +89,7 @@ const recentReportsData = [
     name: "Sustainability Metrics",
     client: "EcoSolutions Corp",
     type: "Sustainability Report",
-    generatedBy: { name: "Michael Brown", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Michael Brown", avatar: "/placeholder.svg?height=32&width=32", gender: "male" },
     date: "May 20, 2025",
     dateObj: new Date("2025-05-20"),
     status: "Complete",
@@ -78,7 +99,7 @@ const recentReportsData = [
     name: "Carbon Footprint Analysis",
     client: "CleanEnergy Ltd",
     type: "Analysis Report",
-    generatedBy: { name: "Emma Wilson", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Emma Wilson", avatar: "/placeholder.svg?height=32&width=32", gender: "female" },
     date: "Jun 10, 2025",
     dateObj: new Date("2025-06-10"),
     status: "In Progress",
@@ -88,7 +109,7 @@ const recentReportsData = [
     name: "Q2 Sustainability Report",
     client: "GreenTech Industries",
     type: "Sustainability Report",
-    generatedBy: { name: "David Kim", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "David Kim", avatar: "/placeholder.svg?height=32&width=32", gender: "male" },
     date: "Aug 5, 2025",
     dateObj: new Date("2025-08-05"),
     status: "Pending",
@@ -98,7 +119,7 @@ const recentReportsData = [
     name: "Environmental Impact Study",
     client: "EcoSolutions Corp",
     type: "Impact Study",
-    generatedBy: { name: "Lisa Zhang", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Lisa Zhang", avatar: "/placeholder.svg?height=32&width=32", gender: "female" },
     date: "Sep 12, 2025",
     dateObj: new Date("2025-09-12"),
     status: "In Progress",
@@ -108,7 +129,7 @@ const recentReportsData = [
     name: "Q3 Carbon Assessment",
     client: "CleanEnergy Ltd",
     type: "Assessment Report",
-    generatedBy: { name: "Robert Taylor", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Robert Taylor", avatar: "/placeholder.svg?height=32&width=32", gender: "male" },
     date: "Nov 8, 2025",
     dateObj: new Date("2025-11-08"),
     status: "Not Started",
@@ -118,7 +139,7 @@ const recentReportsData = [
     name: "Year-End Emissions Report",
     client: "Vanenburg solutions",
     type: "Emissions Summary",
-    generatedBy: { name: "Jennifer Adams", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Jennifer Adams", avatar: "/placeholder.svg?height=32&width=32", gender: "female" },
     date: "Dec 20, 2025",
     dateObj: new Date("2025-12-20"),
     status: "Not Started",
@@ -128,7 +149,7 @@ const recentReportsData = [
     name: "Renewable Energy Analysis",
     client: "GreenTech Industries",
     type: "Energy Report",
-    generatedBy: { name: "Mark Johnson", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Mark Johnson", avatar: "/placeholder.svg?height=32&width=32", gender: "male" },
     date: "Feb 14, 2025",
     dateObj: new Date("2025-02-14"),
     status: "Complete",
@@ -138,7 +159,7 @@ const recentReportsData = [
     name: "Waste Management Report",
     client: "EcoSolutions Corp",
     type: "Management Report",
-    generatedBy: { name: "Anna Martinez", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Anna Martinez", avatar: "/placeholder.svg?height=32&width=32", gender: "female" },
     date: "Apr 3, 2025",
     dateObj: new Date("2025-04-03"),
     status: "Complete",
@@ -148,7 +169,7 @@ const recentReportsData = [
     name: "Water Usage Assessment",
     client: "CleanEnergy Ltd",
     type: "Usage Report",
-    generatedBy: { name: "Tom Wilson", avatar: "/placeholder.svg?height=32&width=32" },
+    generatedBy: { name: "Tom Wilson", avatar: "/placeholder.svg?height=32&width=32", gender: "male" },
     date: "May 25, 2025",
     dateObj: new Date("2025-05-25"),
     status: "In Progress",
@@ -162,9 +183,9 @@ const scheduledReportsData = [
     account: "Vanenburg solutions",
     frequency: "Monthly",
     recipients: [
-      { avatar: "/placeholder.svg?height=24&width=24" },
-      { avatar: "/placeholder.svg?height=24&width=24" },
-      { avatar: "/placeholder.svg?height=24&width=24" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "male" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "female" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "male" },
     ],
     nextRun: "Monthly",
     status: "Not Started",
@@ -174,7 +195,10 @@ const scheduledReportsData = [
     name: "Quarterly Sustainability Report",
     account: "GreenTech Industries",
     frequency: "Quarterly",
-    recipients: [{ avatar: "/placeholder.svg?height=24&width=24" }, { avatar: "/placeholder.svg?height=24&width=24" }],
+    recipients: [
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "female" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "male" },
+    ],
     nextRun: "Quarterly",
     status: "Complete",
   },
@@ -184,10 +208,10 @@ const scheduledReportsData = [
     account: "EcoSolutions Corp",
     frequency: "Weekly",
     recipients: [
-      { avatar: "/placeholder.svg?height=24&width=24" },
-      { avatar: "/placeholder.svg?height=24&width=24" },
-      { avatar: "/placeholder.svg?height=24&width=24" },
-      { avatar: "/placeholder.svg?height=24&width=24" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "male" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "female" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "male" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "female" },
     ],
     nextRun: "Weekly",
     status: "In Progress",
@@ -197,7 +221,7 @@ const scheduledReportsData = [
     name: "Annual Environmental Impact",
     account: "CleanEnergy Ltd",
     frequency: "Annually",
-    recipients: [{ avatar: "/placeholder.svg?height=24&width=24" }],
+    recipients: [{ avatar: "/placeholder.svg?height=24&width=24", gender: "male" }],
     nextRun: "Annually",
     status: "Pending",
   },
@@ -207,9 +231,9 @@ const scheduledReportsData = [
     account: "Houchwald GmbH",
     frequency: "Bi-weekly",
     recipients: [
-      { avatar: "/placeholder.svg?height=24&width=24" },
-      { avatar: "/placeholder.svg?height=24&width=24" },
-      { avatar: "/placeholder.svg?height=24&width=24" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "female" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "male" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "female" },
     ],
     nextRun: "Bi-weekly",
     status: "Complete",
@@ -219,7 +243,10 @@ const scheduledReportsData = [
     name: "Monthly Water Assessment",
     account: "Clearthinking Ltd",
     frequency: "Monthly",
-    recipients: [{ avatar: "/placeholder.svg?height=24&width=24" }, { avatar: "/placeholder.svg?height=24&width=24" }],
+    recipients: [
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "male" },
+      { avatar: "/placeholder.svg?height=24&width=24", gender: "female" },
+    ],
     nextRun: "Monthly",
     status: "Not Started",
   },
@@ -265,11 +292,11 @@ const StatusBadge = ({ status }) => {
       case "Complete":
         return "bg-green-50 text-green-700 border-green-200"
       case "In Progress":
-        return "bg-orange-50 text-orange-700 border-orange-200"
+        return "bg-blue-50 text-blue-700 border-blue-200"
       case "Pending":
-        return "bg-yellow-50 text-yellow-700 border-yellow-200"
+        return "bg-orange-50 text-orange-700 border-orange-200"
       case "Not Started":
-        return "bg-gray-50 text-gray-700 border-gray-200"
+        return "bg-red-50 text-red-700 border-red-200"
       default:
         return "bg-gray-50 text-gray-700 border-gray-200"
     }
@@ -280,11 +307,11 @@ const StatusBadge = ({ status }) => {
       case "Complete":
         return "bg-green-500"
       case "In Progress":
-        return "bg-orange-500"
+        return "bg-blue-500"
       case "Pending":
-        return "bg-yellow-500"
+        return "bg-orange-500"
       case "Not Started":
-        return "bg-gray-400"
+        return "bg-red-500"
       default:
         return "bg-gray-400"
     }
@@ -350,6 +377,7 @@ export default function ReportScreen() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [recentReportsPage, setRecentReportsPage] = useState(1)
   const [scheduledReportsPage, setScheduledReportsPage] = useState(1)
+  const [isClientsOpen, setIsClientsOpen] = useState(true)
   const itemsPerPage = 5
 
   const filteredReports = useMemo(() => {
@@ -435,132 +463,132 @@ export default function ReportScreen() {
       >
         <div className="p-6">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-              <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
-                <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-              </div>
+            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">C</span>
             </div>
-            <span className="font-semibold text-gray-900 text-lg">conil</span>
+            <span className="text-xl font-bold text-gray-900">conil</span>
           </div>
         </div>
 
-        {/* Navigation */}
         <nav className="flex-1 px-4 pb-4">
           <div className="space-y-1">
-            <a
-              href="#"
-              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
-                />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 1v6m8-6v6" />
-              </svg>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 text-white bg-[#462D7E] rounded-lg">
+              <LayoutDashboard className="w-5 h-5" />
               <span className="text-sm font-medium">Dashboard</span>
             </a>
             <a
               href="#"
               className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
-                />
-              </svg>
+              <FolderOpen className="w-5 h-5" />
               <span className="text-sm font-medium">Projects</span>
             </a>
 
             <div className="py-2">
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">CLIENTS</div>
-              <a
-                href="#"
-                className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-                <span className="text-sm font-medium">Clients</span>
-              </a>
-              <a href="#" className="flex items-center gap-3 px-3 py-2 text-white bg-purple-600 rounded-lg">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                <span className="text-sm font-medium">Reports</span>
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-                <span className="text-sm font-medium">Team</span>
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                  />
-                </svg>
-                <span className="text-sm font-medium">Payments & Billings</span>
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                  />
-                </svg>
-                <span className="text-sm font-medium">Company Settings</span>
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  />
-                </svg>
-                <span className="text-sm font-medium">General Settings</span>
-              </a>
+              <div className="flex items-center justify-between px-3 py-2">
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">CLIENTS</div>
+                <button
+                  onClick={() => setIsClientsOpen(!isClientsOpen)}
+                  className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  {isClientsOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                </button>
+              </div>
+
+              {isClientsOpen && (
+                <div className="ml-6 space-y-1">
+                  <a
+                    href="#"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-medium">C</span>
+                    </div>
+                    <span className="text-sm font-medium">Clearthinking Enterp...</span>
+                  </a>
+                  <a
+                    href="#"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-medium">V</span>
+                    </div>
+                    <span className="text-sm font-medium">Vanenburg Solutions</span>
+                  </a>
+                  <a
+                    href="#"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-medium">C1</span>
+                    </div>
+                    <span className="text-sm font-medium">Client1</span>
+                  </a>
+                  <a
+                    href="#"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-medium">C2</span>
+                    </div>
+                    <span className="text-sm font-medium">Client2</span>
+                  </a>
+                  <a
+                    href="#"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-medium">C3</span>
+                    </div>
+                    <span className="text-sm font-medium">Client3</span>
+                  </a>
+                </div>
+              )}
             </div>
+
+            <a
+              href="#"
+              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <FileText className="w-5 h-5" />
+              <span className="text-sm font-medium">Reports</span>
+            </a>
+
+            <a
+              href="#"
+              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <span className="text-sm font-bold">MANAGE</span>
+            </a>
+
+            <a
+              href="#"
+              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <Users className="w-5 h-5" />
+              <span className="text-sm font-medium">Team</span>
+            </a>
+            <a
+              href="#"
+              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <CreditCard className="w-5 h-5" />
+              <span className="text-sm font-medium">Payments & Billings</span>
+            </a>
+            <a
+              href="#"
+              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <Building2 className="w-5 h-5" />
+              <span className="text-sm font-medium">Company Settings</span>
+            </a>
+            <a
+              href="#"
+              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <Settings className="w-5 h-5" />
+              <span className="text-sm font-medium">General Settings</span>
+            </a>
           </div>
         </nav>
 
@@ -583,43 +611,20 @@ export default function ReportScreen() {
               </button>
 
               <h1 className="text-xl font-semibold text-gray-900">Carbon accounting firm</h1>
-              <Button className="bg-green-600 hover:bg-green-700 text-white hidden sm:flex">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+              <Button className="!bg-[#4CAF50] hover:!bg-[#45a049] !text-white hidden sm:flex">
+                <Plus className="w-4 h-4 mr-2" />
                 Add Client
               </Button>
             </div>
             <div className="flex items-center gap-4">
               <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
+                <Search className="w-5 h-5" />
               </button>
               <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 17h5l-5 5-5-5h5v-5a7.5 7.5 0 00-15 0v5h5l-5 5-5-5h5V7a12 12 0 0124 0v10z"
-                  />
-                </svg>
+                <Bell className="w-5 h-5" />
               </button>
               <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                <HelpCircle className="w-5 h-5" />
               </button>
               <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
                 <span className="text-sm font-medium text-gray-700">JD</span>
@@ -632,14 +637,7 @@ export default function ReportScreen() {
         <main className="flex-1 p-4 lg:p-6 bg-white overflow-auto">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
-              />
-            </svg>
+            <Home className="w-4 h-4" />
             <span>Reports</span>
           </div>
 
@@ -660,7 +658,7 @@ export default function ReportScreen() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <button className="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors">
+                <button className="inline-flex items-center px-4 py-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors">
                   Create New Report
                 </button>
               </div>
@@ -722,7 +720,9 @@ export default function ReportScreen() {
                         <td className="px-4 lg:px-6 py-4 whitespace-nowrap text-left">
                           <div className="flex items-center gap-2">
                             <Avatar className="w-6 h-6">
-                              <AvatarImage src={report.generatedBy.avatar || "/placeholder.svg"} />
+                              <AvatarImage
+                                src={`/placeholder.svg?height=32&width=32&query=${report.generatedBy.gender === "male" ? "professional male avatar" : "professional female avatar"}`}
+                              />
                               <AvatarFallback className="text-xs">
                                 {report.generatedBy.name
                                   .split(" ")
@@ -742,34 +742,13 @@ export default function ReportScreen() {
                         <td className="px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left">
                           <div className="flex items-center gap-1">
                             <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 p-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                />
-                              </svg>
+                              <Download className="w-4 h-4" />
                             </Button>
                             <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 p-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
-                                />
-                              </svg>
+                              <Share2 className="w-4 h-4" />
                             </Button>
                             <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 p-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                                />
-                              </svg>
+                              <MoreHorizontal className="w-4 h-4" />
                             </Button>
                           </div>
                         </td>
@@ -826,9 +805,7 @@ export default function ReportScreen() {
                 size="sm"
                 className="text-gray-700 bg-gray-50 border-gray-300 hover:bg-gray-100"
               >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+                <Plus className="w-4 h-4 mr-2" />
                 Schedule New
               </Button>
             </div>
@@ -875,7 +852,9 @@ export default function ReportScreen() {
                         <div className="flex items-center gap-1">
                           {report.recipients.slice(0, 3).map((recipient, index) => (
                             <Avatar key={index} className="w-6 h-6">
-                              <AvatarImage src={recipient.avatar || "/placeholder.svg"} />
+                              <AvatarImage
+                                src={`/placeholder.svg?height=24&width=24&query=${recipient.gender === "male" ? "professional male avatar" : "professional female avatar"}`}
+                              />
                               <AvatarFallback className="text-xs">U</AvatarFallback>
                             </Avatar>
                           ))}
@@ -893,24 +872,10 @@ export default function ReportScreen() {
                       <td className="px-4 lg:px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left">
                         <div className="flex items-center gap-1">
                           <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 p-1">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                              />
-                            </svg>
+                            <Edit className="w-4 h-4" />
                           </Button>
                           <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 p-1">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                              />
-                            </svg>
+                            <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
                       </td>
